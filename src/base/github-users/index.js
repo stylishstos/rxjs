@@ -1,10 +1,11 @@
 import {of, from, fromEvent, merge} from 'rxjs';
-import {flatMap, map, startWith, shareReplay} from 'rxjs/operators';
+import {flatMap, map, startWith, shareReplay, withLatestFrom} from 'rxjs/operators';
 
 const usersListView = document.getElementById('users-list-view');
 const preloader = document.getElementById('preloader');
 
 const refreshClickStream$ = fromEvent(document.getElementById('button-refresh'), 'click');
+const refresUserClickStream$ = fromEvent(document.querySelectorAll('.refresh-user'), 'click');
 const initialRefreshStream$ = of('https://api.github.com/users');
 const requestOnRefreshStream$ = refreshClickStream$.pipe(
     map((event) => 'https://api.github.com/users?scince=' + Math.floor(Math.random() * 500)),
@@ -53,6 +54,7 @@ const dataStream3$ = merge(
 ).pipe(
     startWith(null),
 );
+
 dataStream$
     .subscribe((listUsers) => {
         if (listUsers) {
@@ -71,6 +73,21 @@ dataStream$
         }
     });
 
+refresUserClickStream$.pipe(
+    withLatestFrom(responseStream$)
+).subscribe(([ev, listUsers]) => {
+    ev.preventDefault();
+
+    if (ev.currentTarget.dataset) {
+        const { userId } = ev.currentTarget.dataset;
+        
+        renderSuggestion(
+            listUsers[Math.floor(Math.random() * listUsers.length)],
+            `user-${userId}`
+        );
+    }
+});
+
 // dataStream2$.subscribe(console.log);
 // dataStream3$.subscribe(console.log);
 
@@ -82,6 +99,6 @@ dataStream$
 //     shareReplay(1),
 // )
 
-stream$.subscribe(console.log);
-stream$.subscribe(console.log);
-stream$.subscribe(console.log);
+// stream$.subscribe(console.log);
+// stream$.subscribe(console.log);
+// stream$.subscribe(console.log);
