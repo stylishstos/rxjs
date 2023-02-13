@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>RxJS</title>
+</head>
+<body style="padding: 15px;">
+  <div class="row">
+    <div class="col s3">
+      <div class="row">
+        <button class="waves-effect waves-light btn-large" id="button-refresh" style="width: 100%;">refresh</button>
+      </div>
+      <div class="row">
+        <div class="preloader-wrapper big active" id="preloader" style="margin: auto;">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <section class="users-list-view" id="users-list-view">
+          <ul class="collection">
+            <li class="collection-item avatar" id="user-1">
+              <img class="circle" src="" alt="">
+              <a class="title" href=""></a>
+            </li>
+            <li class="collection-item avatar" id="user-2">
+              <img class="circle" src="" alt="">
+              <a class="title" href=""></a>
+            </li>
+            <li class="collection-item avatar" id="user-3">
+              <img class="circle" src="" alt="">
+              <a class="title" href=""></a>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
